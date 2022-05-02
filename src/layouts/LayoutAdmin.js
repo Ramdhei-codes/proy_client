@@ -3,16 +3,14 @@ import { Layout } from "antd";
 
 export default function LayoutAdmin(props) {
   console.log(props);
-  const { children } = props;
-
   const { Header, Content, Footer } = Layout;
+  const { children } = props;
   return (
     <Layout>
-      <h2>Menu Slider</h2>
-      <Layout>
-        <Header>Header</Header>
+      <Layout className="layoutAdmin">
+        <Header className="layoutHeader">Header</Header>
         <Content>{children}</Content>
-        <Footer>React project 2022</Footer>
+        <Footer>React Project 2022</Footer>
       </Layout>
     </Layout>
   );

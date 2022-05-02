@@ -16,7 +16,6 @@ function App() {
           element={
             <route.layout>
               <route.component></route.component>
-              <h2>Child Component</h2>
             </route.layout>
           }></Route>
         ))}

@@ -7,11 +7,10 @@ export default function LayoutBasic(props) {
   const { Header, Content, Footer } = Layout;
   return (
     <Layout>
-      <h2>Menu Slider</h2>
-      <Layout>
-        <Header>Header</Header>
+      <Layout className="layout">
+        <Header className="layoutHeader">Header</Header>
         <Content>{children}</Content>
-        <Footer>React project 2022</Footer>
+        <Footer>React Project 2022</Footer>
       </Layout>
     </Layout>
   );
