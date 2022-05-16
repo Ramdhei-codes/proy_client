@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Row, Col } from "antd";
 
 import { Link } from "react-router-dom";
+import './Admin.scss'
 
 export default function Admin() {
   return (

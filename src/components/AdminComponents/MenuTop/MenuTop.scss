@@ -3,4 +3,27 @@
 .menu-top {
     display: flex;
 
+    button {
+        color: aqua;
+
+        &:hover {
+            color: beige;
+        }
+        &:focus,
+        &:active {
+            color: aqua;
+        }
+    }
+
+    &__left {
+        &-logo {
+            width: 80px;
+            padding: 0 10px;
+        }
+    }
+
+    &__right {
+        position: absolute;
+        right: 0;
+    }
 }

@@ -6,21 +6,20 @@ import MenuSlider from "../components/AdminComponents/MenuSlider";
 export default function LayoutBasic(props) {
   const [menuCollapsed, setMenuCollapsed] = useState(false);
   const { Header, Content, Footer } = Layout;
+  const { children } = props;
   return (
-    <Layout>
-      <MenuSlider menuCollapsed={menuCollapsed}></MenuSlider>
-      <Layout className="layoutAdmin">
-        <Header className="layoutHeader">
-          <MenuTop
-            menuCollapsed={menuCollapsed}
-            setMenuCollapsed={setMenuCollapsed}
-          ></MenuTop>
-        </Header>
-        <Content>
-          <h1>Rutas</h1>
-        </Content>
-        <Footer>React Project 2022</Footer>
+    <Layout className="layoutAdmin">
+      <Header style={{padding: '0.5em'}}>
+        <MenuTop
+          menuCollapsed={menuCollapsed}
+          setMenuCollapsed={setMenuCollapsed}
+        ></MenuTop>
+      </Header>
+      <Layout>
+        <MenuSlider menuCollapsed={menuCollapsed}></MenuSlider>
+        <Content>{children}</Content>
       </Layout>
+      <Footer className="layoutFooter">React Project 2022</Footer>
     </Layout>
   );
 }

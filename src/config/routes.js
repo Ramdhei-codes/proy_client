@@ -23,7 +23,7 @@ const routesAdmin = [
 const globalRoutes = [
   {
     path: "*",
-    layout: LayoutBasic,
+    layout: LayoutAdmin,
     component: NotFound,
   },
 ];
