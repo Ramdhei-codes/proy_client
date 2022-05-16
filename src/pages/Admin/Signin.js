@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import { Input, Form } from "antd";
+import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
+import { Layout } from "antd";
 
 export default function Signin() {
-    return (
-        <div>
-            <h2>Signin page</h2>
-        </div>
-    )
+  return (
+      <Layout>
+          <Form>
+              <Form.Item></Form.Item>
+          </Form>
+      </Layout>
+  );
 }
