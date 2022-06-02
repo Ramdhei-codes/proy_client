@@ -4,9 +4,6 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import {Form, Input, Checkbox, Button} from 'antd'
 
 export default function LogIn() {
-  const onFinish = values => {
-    console.log('Received values of form: ', values);
-  };
 
   return (
     <Form
@@ -15,7 +12,6 @@ export default function LogIn() {
       initialValues={{
         remember: true,
       }}
-      onFinish={onFinish}
     >
       <Form.Item
         name="username"

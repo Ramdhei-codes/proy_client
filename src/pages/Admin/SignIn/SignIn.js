@@ -1,9 +1,8 @@
 import React from "react";
-import { Input, Form } from "antd";
-import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Layout, Tabs } from "antd";
 
-import LogIn from '../../components/AdminComponents/LogIn'
+import LogIn from '../../../components/AdminComponents/LogIn'
+import Register from '../../../components/AdminComponents/Register'
 
 export default function Signin() {
   const { TabPane } = Tabs;
@@ -16,7 +15,7 @@ export default function Signin() {
             <LogIn></LogIn>
           </TabPane>
           <TabPane tab={<span>Registrarse</span>} key="2">
-            Content of Tab Pane 2
+            <Register></Register>
           </TabPane>
         </Tabs>
       </Content>

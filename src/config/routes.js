@@ -2,19 +2,19 @@ import LayoutAdmin from "../layouts/LayoutAdmin";
 import LayoutBasic from "../layouts/LayoutBasic";
 
 import Admin from "../pages/Admin";
-import Signin from "../pages/Admin/Signin";
+import Signin from "../pages/Admin/SignIn";
 import HomePage from "../pages/Home";
 import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
 
 const routesAdmin = [
   {
-    path: "/admin",
+    path: "/admin/*",
     layout: LayoutAdmin,
     component: Admin,
   },
   {
-    path: "/admin/login",
+    path: "/admin/login/*",
     layout: LayoutAdmin,
     component: Signin,
   },
