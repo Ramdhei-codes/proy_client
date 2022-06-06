@@ -9,12 +9,12 @@ import NotFound from "../pages/NotFound";
 
 const routesAdmin = [
   {
-    path: "/admin/*",
+    path: "/admin",
     layout: LayoutAdmin,
     component: Admin,
   },
   {
-    path: "/admin/login/*",
+    path: "/admin/login",
     layout: LayoutAdmin,
     component: Signin,
   },

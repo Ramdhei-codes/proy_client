@@ -8,9 +8,9 @@ export default function Signin() {
   const { TabPane } = Tabs;
   const { Content } = Layout;
   return (
-    <Layout>
+    <Layout className="tabs-signin">
       <Content>
-        <Tabs type="card">
+        <Tabs type="card" className="tabs">
           <TabPane tab={<span>Iniciar sesión</span>} key="1">
             <LogIn></LogIn>
           </TabPane>

@@ -1,60 +1,100 @@
-import React from "react";
+import React, { useState } from "react";
+import { Form, Input, Button, notification } from "antd";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { signInApi } from "../../../api/user.js";
 import "./LogIn.scss";
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import {Form, Input, Checkbox, Button} from 'antd'
+import {
+  emailValidation,
+  minLengthValidation,
+} from "../../../validations/FormValidations";
+import { useNavigate } from "react-router-dom";
 
 export default function LogIn() {
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+  const [formValid, setFormValid] = useState({
+    email: false,
+    password: false,
+  });
+
+  const changeForm = (e) => {
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const inputValidation = (e) => {
+    const { type, name } = e.target;
+
+    if (type === "email") {
+      setFormValid({ ...formValid, [name]: emailValidation(e.target) });
+    }
+    if (type === "password") {
+      setFormValid({ ...formValid, [name]: minLengthValidation(e.target, 6) });
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const login = async (e) => {
+    e.preventDefault();
+    const emailVal = inputs.email;
+    const passwordVal = inputs.password;
+
+    if (!emailVal || !passwordVal) {
+      notification["error"]({
+        message: "Todos los campos son obligatorios",
+      });
+    } else {
+      const result = await signInApi(inputs);
+      console.log(result);
+      if (!result.accessToken) {
+        notification["error"]({
+          message: "No se pudo hacer Log in",
+        });
+      } else {
+        notification["success"]({
+          message: result.message,
+        });
+        localStorage.setItem("accessToken", result.accessToken);
+        localStorage.setItem("refreshToken", result.refreshToken);
+
+        navigate("/admin");
+      }
+    }
+  };
 
   return (
-    <Form
-      name="normal_login"
-      className="login-form"
-      initialValues={{
-        remember: true,
-      }}
-    >
-      <Form.Item
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Username!',
-          },
-        ]}
-      >
-        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Password!',
-          },
-        ]}
-      >
+    <Form className="login-form" onChange={changeForm}>
+      <Form.Item>
         <Input
-          prefix={<LockOutlined className="site-form-item-icon" />}
-          type="password"
-          placeholder="Password"
+          prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+          type="email"
+          name="email"
+          placeholder="Correo electronico"
+          className="login-form__input"
+          onChange={inputValidation}
+          value={inputs.email}
         />
       </Form.Item>
       <Form.Item>
-        <Form.Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        <a className="login-form-forgot" href="">
-          Forgot password
-        </a>
+        <Input
+          prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+          type="password"
+          name="password"
+          placeholder="Contraseña"
+          className="login-form__input"
+          onChange={inputValidation}
+          value={inputs.password}
+        />
       </Form.Item>
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
-        </Button>
-        Or <a href="">register now!</a>
-      </Form.Item>
+      <Button onClick={login} className="login-form__button">
+        Log In
+      </Button>
     </Form>
   );
 }
